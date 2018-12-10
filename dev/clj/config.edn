@@ -1,0 +1,2 @@
+{:server {:port 3042}
+ :api {:host "https://kitsune.localtunnel.me"}}
