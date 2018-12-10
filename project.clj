@@ -1,11 +1,8 @@
-(defproject kitsune-frontend "0.1.0-SNAPSHOT"
-  :description "FIXME: write this!"
-  :url "http://example.com/FIXME"
-  :license {:name "Eclipse Public License"
-            :url "http://www.eclipse.org/legal/epl-v10.html"}
-
-  
-  
+(defproject social.kitsune/frontend "0.1.0"
+  :description "Frontend for Kitsune"
+  :url "https://kitsune.social"
+  :license {:name "GNU AFFERO GENERAL PUBLIC LICENSE"
+            :url "https://www.gnu.org/licenses/agpl-3.0.en.html"}
   :min-lein-version "2.7.1"
 
   :dependencies [[org.clojure/clojure "1.9.0"]
