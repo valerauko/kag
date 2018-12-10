@@ -1,4 +1,4 @@
-(defproject social.kitsune/frontend "0.1.0"
+(defproject social.kitsune/kag "0.1.0"
   :description "Frontend for Kitsune"
   :url "https://kitsune.social"
   :license {:name "GNU AFFERO GENERAL PUBLIC LICENSE"
@@ -22,14 +22,14 @@
                 ;; The presence of a :figwheel configuration here
                 ;; will cause figwheel to inject the figwheel client
                 ;; into your build
-                :figwheel {:on-jsload "kitsune-frontend.core/on-js-reload"
+                :figwheel {:on-jsload "kag.core/on-js-reload"
                            ;; :open-urls will pop open your application
                            ;; in the default browser once Figwheel has
                            ;; started and compiled your application.
                            ;; Comment this out once it no longer serves you.
                            :open-urls ["http://localhost:3449/index.html"]}
 
-                :compiler {:main kitsune-frontend.core
+                :compiler {:main kag.core
                            :asset-path "js/compiled/out"
                            :output-to "resources/public/js/compiled/kitsune_frontend.js"
                            :output-dir "resources/public/js/compiled/out"
@@ -43,7 +43,7 @@
                {:id "min"
                 :source-paths ["src"]
                 :compiler {:output-to "resources/public/js/compiled/kitsune_frontend.js"
-                           :main kitsune-frontend.core
+                           :main kag.core
                            :optimizations :advanced
                            :pretty-print false}}]}
 

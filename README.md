@@ -1,4 +1,4 @@
-# Kitsune Frontend
+# Kag
 
 Default sidecar frontend for [Kitsune](https://github.com/valerauko/kitsune).
 
