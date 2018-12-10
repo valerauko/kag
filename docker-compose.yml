@@ -1,0 +1,23 @@
+version: '2.3'
+
+services:
+  frontend:
+    image: clojure:lein-alpine
+    working_dir: /root
+    command: lein repl :headless :host 0.0.0.0 :port 30420
+    restart: always
+    ports:
+      - 3042:3042
+      - 3449:3449
+      - 30420:30420
+    volumes:
+      - .:/root
+    networks:
+      default:
+      kitsune_default:
+
+networks:
+  default:
+  kitsune_default:
+    external:
+      name: kitsune_default
