@@ -1,6 +1,6 @@
-# kitsune-frontend
+# Kitsune Frontend
 
-FIXME: Write a one-line description of your library/project.
+Default sidecar frontend for [Kitsune](https://github.com/valerauko/kitsune).
 
 ## Overview
 
