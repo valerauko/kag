@@ -7,7 +7,6 @@ commands:
       - restore_cache:
           keys:
           - lein-dependencies-{{ checksum "project.clj" }}
-          - lein-dependencies-
       - run: lein deps
       - save_cache:
           paths:
