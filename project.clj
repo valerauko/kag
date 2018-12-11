@@ -56,6 +56,8 @@
                                   [figwheel-sidecar "0.5.16"]
                                   [cider/piggieback "0.3.1"]
                                   [org.clojure/tools.namespace "0.2.11"]]
+                   :plugins [[jonase/eastwood "0.3.4"
+                              :exclusions [org.clojure/clojure]]]
                    :jvm-options ["-Dclojure.spec.check-asserts=true"]
                    :repl-options {:nrepl-middleware [cider.piggieback/wrap-cljs-repl]}
                    :cljsbuild
