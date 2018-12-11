@@ -1,0 +1,6 @@
+{:oauth
+  {:permission-question "Scopes requested by this application"
+   :read "read every detail of your account"
+   :write "edit your profile and post on your behalf"
+   :follow "(un)follow or (un)block users"
+   :push "receive push notifications for you"}}

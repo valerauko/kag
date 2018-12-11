@@ -14,8 +14,11 @@
                  [mount "0.1.15"]
                  [manifold "0.1.8"]
                  [aleph "0.4.6"]
+                 [meta-merge "1.0.0"]
                  [metosin/reitit "0.2.9"]
                  [ring/ring-defaults "0.3.2"]
+                 [camel-snake-kebab "0.4.0"]
+                 [tongue "0.2.4"]
                  [cljstache "2.0.1"]
                  ; cljs
                  [org.clojure/clojurescript "1.10.238"]
@@ -37,6 +40,7 @@
 
   :profiles {:uberjar {:omit-source true
                        :prep-tasks ["compile" ["cljsbuild" "once" "min"]]
+                       :jvm-options ["-Dclojure.spec.compile-asserts=false"]
                        :cljsbuild
                          {:builds
                           {:min
@@ -52,6 +56,7 @@
                                   [figwheel-sidecar "0.5.16"]
                                   [cider/piggieback "0.3.1"]
                                   [org.clojure/tools.namespace "0.2.11"]]
+                   :jvm-options ["-Dclojure.spec.check-asserts=true"]
                    :repl-options {:nrepl-middleware [cider.piggieback/wrap-cljs-repl]}
                    :cljsbuild
                      {:builds

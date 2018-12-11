@@ -3,7 +3,11 @@
             [clojure.tools.logging :as log]
             [jsonista.core :as json]
             [reitit.ring :as ring]
-            [ring.middleware.defaults :refer [wrap-defaults site-defaults]]))
+            [ring.middleware.defaults :refer [wrap-defaults site-defaults]]
+            [camel-snake-kebab.extras :refer [transform-keys]]
+            [camel-snake-kebab.core :refer [->kebab-case-keyword
+                                            ->snake_case_string]]
+            [kag.handlers.oauth :as oauth]))
 
 (defn wrap-logging
   [handler]
@@ -26,12 +30,29 @@
   [handler]
   (wrap-defaults handler site-defaults))
 
+(defn transform-map
+  ([hashmap] (transform-map hashmap ->kebab-case-keyword))
+  ([hashmap func]
+   (transform-keys
+     #(if-not (number? %) (func %) %)
+     hashmap)))
+
+(defn case-wrapper
+  [handler]
+  (fn param-case [request]
+    (let [response (-> request
+                       (update :body-params transform-map)
+                       (update :form-params transform-map)
+                       (update :query-params transform-map)
+                       handler)]
+      response)))
+
 (def router
   (ring/router
-    ["/" {:get (constantly {:status 200
-                            :body (slurp (io/resource "public/index.html"))
-                            :headers {"Content-type" "text/html"}})}]
-    {:data {:middleware [wrap-logging]}}))
+    ["/" {:get {:parameters {:query {:scope string?}}}
+                :handler oauth/auth-form}]
+    {:data {:middleware [wrap-logging
+                         case-wrapper]}}))
 
 (def wrapped-handler
   (-> (ring/ring-handler
@@ -40,5 +61,5 @@
           (ring/create-resource-handler {:path "/public"})
           (ring/redirect-trailing-slash-handler)
           (ring/create-default-handler
-            {:not-found (constantly {:status 404 :body {:error "Not found"}})})))
+            {:not-found (constantly {:status 404 :body "Not found"})})))
       default-middleware))
